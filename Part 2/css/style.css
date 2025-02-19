@@ -1,0 +1,30 @@
+/* TAGS CSS */
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+img {
+    width: 100%;
+}
+
+/* ID CSS */
+
+#root {
+    background-color: #fbe9d0;
+}
+
+#header {
+    background-color: #244855;
+}
+
+#footer {
+    background-color: #244855;
+}
+
+
+/* CLASSES CSS */
+
+.sidebar {
+    background-color: #244855;
+}
