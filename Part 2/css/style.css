@@ -28,3 +28,11 @@ img {
 .sidebar {
     background-color: #244855;
 }
+
+table.table tbody tr td {
+    background-color: #fbe9d0;
+}
+.ui-w-40 {
+    width: 100px ;
+    height: auto;
+}
