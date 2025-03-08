@@ -1,0 +1,5 @@
+Ayham Abbad
+Created cart.html 
+created check-out.html
+created conformation.html
+fixed some styling issues related to task bar in some html files
