@@ -1,0 +1,12 @@
+HTML:
+index.html
+contact-us.html
+about-us.html
+login.html
+
+IMG:
+banner.jpg
+mid-banner.jpg
+img-tea-1.png
+img-tea-2.png
+img-tea-3.png
