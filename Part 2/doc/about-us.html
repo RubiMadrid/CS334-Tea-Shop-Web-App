@@ -12,81 +12,63 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Collapsible navbar  -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
         <!-- Costume CSS stylesheets -->
         <link href="../css/style.css" rel="stylesheet">
     </head>
     <body>
-        
         <!-- ROOT -->
         <div id="root">
-
-            <!-- ROOT -->
-        <div id="root">
-
             <!-- HEADER -->
             <div id="header" class="container-fluid text-white">
                 <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link link-light" href="../doc/cart.html">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-light" href="../doc/login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-light" href="../doc/login.html">Logout</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link link-light" href="../doc/cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link link-light" href="../doc/login.html">Login</a></li>
                 </ul>
 
                 <h1 class="h1 text-center"><strong>The Tea Shop</strong></h1>
-                
+
+                <!-- Collapsible Navbar  -->
                 <nav class="navbar navbar-expand-sm navbar-dark">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html"><h5>Home</h5></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="items-list.html"><h5>Teas</h5></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact-us.html"><h5>Contact Us</h5></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="about-us.html"><h5>Our Story</h5></a>
-                        </li>
-                    </ul>
-                </nav>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart.html"><h5>Cart</h5></a>
-                        </li>
-                      </ul>
+                    <div class="container-fluid d-flex flex-row-reverse">
+                      <button class="navbar-toggler ml-5 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html"><h5>Home</h5></a></li>
+                            <li class="nav-item"><a class="nav-link" href="items-list.html"><h5>Teas</h5></a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact-us.html"><h5>Contact Us</h5></a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#"><h5>Our Story</h5></a></li>
+                        </ul>
+                      </div>
                     </div>
-                  </nav>
+                </nav>
             </div>
 
-            <div id="body" class="container w-50 p-5">
-                <h1 class="h1 p-1">
-                    Our Story
-                </h1>
-                <p class="text-justify ">
-                    &emsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta nulla massa, eu pretium nisi pharetra vel. 
-                    Donec congue ex turpis. Nullam consequat mollis ante eu maximus. Curabitur urna mauris, lacinia sit amet nibh sit 
-                    amet, mattis viverra neque. Etiam iaculis scelerisque velit, sit amet sodales sapien semper non. Vestibulum ante 
-                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec convallis dolor at ornare ultricies. 
-                    Pellentesque ornare velit dolor, at sollicitudin nisl venenatis non. Fusce vehicula, libero ut pulvinar 
-                    consectetur, ipsum odio scelerisque ante, non mollis ligula arcu quis lacus. Duis massa leo, dapibus at eros 
-                    sit amet, maximus aliquam mauris. Curabitur aliquet justo massa, quis maximus turpis bibendum nec.
-                </p>
+            <div id="body" class="container w-75 py-5">
 
+                <h1 class="h1 px-md-5 p-2">Our Story</h1>
+
+                <div class="container w-75 p-md-5">
+                    
+                    <p class="text-justify">
+                        &emsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta nulla massa, eu pretium nisi pharetra vel. 
+                        Donec congue ex turpis. Nullam consequat mollis ante eu maximus. Curabitur urna mauris, lacinia sit amet nibh sit 
+                        amet, mattis viverra neque. Etiam iaculis scelerisque velit, sit amet sodales sapien semper non. 
+                    </p>
+                </div>
+                
             </div>
-
+            
             <!-- FOOTER -->
-            <div id="footer" class="container-fluid text-white p-1">
+            <div id="footer" class="container-fluid text-white py-5">
                 <div class="container p-1">
 
                     <div class="row p-2">
-                        <div class="col p-4">
-                            
-                        </div>
                         <div class="col p-4">
                             <h4>
                                 <strong>
