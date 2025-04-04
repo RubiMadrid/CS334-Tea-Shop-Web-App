@@ -87,13 +87,13 @@
                     <label class="btn btn-outline-primary" for="5lb">5lb</label>
                 </div>
             </div>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <label for="quantity" class="form-label">Quantity:</label>
                 <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
-            </div>
-            <button class="btn btn-primary btn-lg mb-3 me-2">
-                    <i class="bi bi-cart-plus"></i> Add to Cart
-                </button>
+            </div> -->
+            <button class="btn btn-primary btn-lg mb-3 me-2" onclick="addToCart(2)">
+                <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
             
             <div class="mt-4">
                 <h5>Tasting Notes:</h5>
@@ -162,5 +162,7 @@
             </div>
         </div>
         <script src="" async defer></script>
+        <script src="../../Part 3/db.js" async defer></script>
+        <script src="../../Part 3/cart.js" async defer></script>
     </body>
 </html>
