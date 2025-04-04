@@ -1,6 +1,11 @@
 //db.js
 
-const indexedDB = window.indexedDB;
+const indexedDB =
+    window.indexedDB ||
+    window.mozIndexedDB ||
+    window.webkitIndexedDB ||
+    window.msIndexedDB ||
+    window.shimIndexedDB;
 
 const request = indexedDB.open("TeaShopDB", 1);
 
