@@ -39,13 +39,13 @@
                     <a class="nav-link" href="../index.html"><h5>Home</h5></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="items-list.html"><h5>Teas</h5></a>
+                    <a class="nav-link" href="items-list.html"><h5>Teas</h5></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact-us.html"><h5>Contact Us</h5></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about-us.html"><h5>Our Story</h5></a>
+                    <a class="nav-link active" href="about-us.html"><h5>Our Story</h5></a>
                 </li>
             </ul>
         </nav>
@@ -61,7 +61,7 @@
          </div>           
         <!-- Product Details -->
         <div class="col-md">
-            <h2 class="mb-3">Detail Tea 3</h2>
+            <h2 class="mb-3">Detail Tea 1</h2>
             <p class="text-muted mb-4">SKU: WH1000XM4</p>
             <div class="mb-3">
                 <span class="h4 me-2">$25</span>
@@ -87,14 +87,16 @@
                     <label class="btn btn-outline-primary" for="5lb">5lb</label>
                 </div>
             </div>
-            <!-- <div class="mb-4">
+            <div class="mb-4">
                 <label for="quantity" class="form-label">Quantity:</label>
                 <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
-            </div> -->
-            <button class="btn btn-primary btn-lg mb-3 me-2" onclick="addToCart(3)">
+            </div>
+            <button class="btn btn-primary btn-lg mb-3 me-2">
                     <i class="bi bi-cart-plus"></i> Add to Cart
                 </button>
-
+            <button class="btn btn-outline-secondary btn-lg mb-3">
+                    <i class="bi bi-heart"></i> Add to Wishlist
+                </button>
             <div class="mt-4">
                 <h5>Tasting Notes:</h5>
                 <ul>
@@ -115,7 +117,6 @@
             document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
             event.target.classList.add('active');
         }
-    
 </script>
 
 
@@ -162,7 +163,6 @@
                 </div>    
             </div>
         </div>
-        <script src="../../Part 3/db.js" async defer></script>
-        <script src="../../Part 3/cart.js" async defer></script>
+        <script src="" async defer></script>
     </body>
 </html>
