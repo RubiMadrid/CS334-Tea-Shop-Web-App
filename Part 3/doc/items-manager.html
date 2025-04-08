@@ -1,152 +1,180 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Admin Panel - Items Manager</title>
-        <meta name="description" content="lan=en">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Latest compiled and minified CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Custom CSS stylesheets -->
-        <link href="../css/style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin Panel - Items Manager</title>
+    <meta name="description" content="lan=en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        <!-- logout script -->
-         <script src="../js/logout.js"></script>
+    <!-- Custom CSS stylesheets -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- logout script -->
+    <script src="../js/logout.js"></script>
 </head>
 <body id="root" style="background-color: #fbe9d0;">
-    <!-- HEADER -->
-            <div id="header" style="background-color: #244855;" class="container-fluid p-1 text-white">
-                <ul class="nav justify-content-end">
-                    <li class="nav-item"><a class="nav-link link-light" href="./cart.html">Cart</a></li>
-                    <li class="nav-item"><button id="logout-btn" class="nav-link link-light">Logout</button></li>
-                </ul>
+<!-- HEADER -->
+<div id="header" style="background-color: #244855;" class="container-fluid p-1 text-white">
+    <ul class="nav justify-content-end">
+        <li class="nav-item"><a class="nav-link link-light" href="./cart.html">Cart</a></li>
+        <li class="nav-item"><button id="logout-btn" class="nav-link link-light">Logout</button></li>
+    </ul>
 
-                <h1 class="h1 p-4  text-center"><strong>Admin Panel - Items Manager</strong></h1>
-                <nav class="navbar navbar-expand-sm navbar-dark">
-                    <div class="container-fluid">
-                      <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" style="color: white;" onclick="window.location.href = '../index.html';">Back to Home</button>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="orders-manager.html"><h5>Orders Manager</h5></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </nav>
+    <h1 class="h1 p-4 text-center"><strong>Admin Panel - Items Manager</strong></h1>
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" style="color: white;" onclick="window.location.href = '../index.html';">Back to Home</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="orders-manager.html"><h5>Orders Manager</h5></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="body" class="container mt-5">
+    <h1 class="text-center">Manage Inventory</h1>
+    <p class="text-center">Add, edit, or remove teas from the store.</p>
+
+    <!-- Add New Item Form -->
+    <div class="card p-3 mb-4">
+        <h5>Add New Tea</h5>
+        <form onsubmit="event.preventDefault(); addItem();">
+            <div class="mb-2">
+                <label class="form-label">Tea Name</label>
+                <input type="text" class="form-control" placeholder="Enter tea name">
             </div>
-    
-    <div id="body" class="container mt-5">
-        <h1 class="text-center">Manage Inventory</h1>
-        <p class="text-center">Add, edit, or remove teas from the store.</p>
-        
-        <!-- Add New Item Form -->
-        <div class="card p-3 mb-4">
-            <h5>Add New Tea</h5>
-            <form onsubmit="event.preventDefault(); addItem();">
-                <div class="mb-2">
-                    <label class="form-label">Tea Name</label>
-                    <input type="text" class="form-control" placeholder="Enter tea name">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Price ($)</label>
-                    <input type="number" class="form-control" placeholder="Enter price">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Stock Quantity</label>
-                    <input type="number" class="form-control" placeholder="Enter stock quantity">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Upload Image</label>
-                    <input type="file" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Item</button>
-            </form>
-        </div>
+            <div class="mb-2">
+                <label class="form-label">Price ($)</label>
+                <input type="number" class="form-control" placeholder="Enter price">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Stock Quantity</label>
+                <input type="number" class="form-control" placeholder="Enter stock quantity">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Upload Image</label>
+                <input type="file" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Item</button>
+        </form>
+    </div>
 
-        <!-- Inventory Table -->
-        <div class="table-responsive">
-            <table class="table table-bordered mt-3 table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Tea Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Green Tea</td>
-                        <td>$5.00</td>
-                        <td>10</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" onclick="editItem(this)">Edit</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteItem(this)">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Black Tea</td>
-                        <td>$6.50</td>
-                        <td>5</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" onclick="editItem(this)">Edit</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteItem(this)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- Inventory Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered mt-3 table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Tea Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
-    
-    <!-- FOOTER -->
-    <div id="footer" style="background-color: #244855;" class="container-fluid text-white p-1">
-        <p class="text-center">&copy; 2025 The Tea Shop. All rights reserved.</p>
-    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer" style="background-color: #244855;" class="container-fluid text-white p-1">
+    <p class="text-center">&copy; 2025 The Tea Shop. All rights reserved.</p>
+</div>
+
+<!-- IndexedDB Script for Items Manager -->
 <script>
-    function addItem() {
-        const table = document.querySelector("tbody");
-        const name = document.querySelector("input[placeholder='Enter tea name']").value;
-        const price = document.querySelector("input[placeholder='Enter price']").value;
-        const stock = document.querySelector("input[placeholder='Enter stock quantity']").value;
+    document.addEventListener("DOMContentLoaded", function () {
+        let db;
 
-        if (name && price && stock) {
-            const row = `<tr>
-                <td>${name}</td>
-                <td>$${price}</td>
-                <td>${stock}</td>
-                <td>
-                    <button class='btn btn-warning btn-sm'>Edit</button>
-                    <button class='btn btn-danger btn-sm' onclick='this.closest("tr").remove()'>Delete</button>
-                </td>
-            </tr>`;
-            table.innerHTML += row;
-            document.querySelector("form").reset();
+        const request = indexedDB.open("TeaShopDB", 2);
+        request.onerror = () => alert("Failed to open TeaShopDB");
+
+        request.onupgradeneeded = function (event) {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains("storeItems")) {
+                db.createObjectStore("storeItems", { keyPath: "id" });
+            }
+        };
+
+        request.onsuccess = (event) => {
+            db = event.target.result;
+            loadItems();
+        };
+
+        function loadItems() {
+            const transaction = db.transaction("storeItems", "readonly");
+            const store = transaction.objectStore("storeItems");
+            const request = store.getAll();
+
+            request.onsuccess = function () {
+                const items = request.result;
+                const tbody = document.querySelector("tbody");
+                tbody.innerHTML = "";
+
+                items.forEach(item => {
+                    tbody.innerHTML += `
+                            <tr data-id="${item.id}">
+                                <td>${item.name}</td>
+                                <td>$${item.price}</td>
+                                <td>${item.stock || 0}</td>
+                                <td>
+                                    <button class='btn btn-warning btn-sm' onclick='editItem(${item.id})'>Edit</button>
+                                    <button class='btn btn-danger btn-sm' onclick='deleteItem(${item.id})'>Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                });
+            };
         }
-    }
-</script>
-<script>
-    function deleteItem(button) {
-        button.closest("tr").remove();
-    }
 
-    function editItem(button) {
-        const row = button.closest("tr");
-        const cells = row.querySelectorAll("td");
-        const name = cells[0].innerText;
-        const price = cells[1].innerText.replace('$', '');
-        const stock = cells[2].innerText;
-        
-        document.querySelector("input[placeholder='Enter tea name']").value = name;
-        document.querySelector("input[placeholder='Enter price']").value = price;
-        document.querySelector("input[placeholder='Enter stock quantity']").value = stock;
-        
-        row.remove();
-    }
+        window.addItem = function () {
+            const name = document.querySelector("input[placeholder='Enter tea name']").value;
+            const price = parseFloat(document.querySelector("input[placeholder='Enter price']").value);
+            const stock = parseInt(document.querySelector("input[placeholder='Enter stock quantity']").value);
+
+            if (!name || isNaN(price) || isNaN(stock)) return alert("Fill all fields");
+
+            const transaction = db.transaction("storeItems", "readwrite");
+            const store = transaction.objectStore("storeItems");
+
+            const id = Date.now();
+            const newItem = { id, name, price, stock, image: "../src/img/default-tea.png" };
+
+            const request = store.put(newItem);
+            request.onsuccess = () => {
+                loadItems();
+                document.querySelector("form").reset();
+            };
+        };
+
+        window.deleteItem = function (id) {
+            const transaction = db.transaction("storeItems", "readwrite");
+            const store = transaction.objectStore("storeItems");
+            store.delete(id).onsuccess = loadItems;
+        };
+
+        window.editItem = function (id) {
+            const transaction = db.transaction("storeItems", "readonly");
+            const store = transaction.objectStore("storeItems");
+            const request = store.get(id);
+
+            request.onsuccess = function () {
+                const item = request.result;
+                document.querySelector("input[placeholder='Enter tea name']").value = item.name;
+                document.querySelector("input[placeholder='Enter price']").value = item.price;
+                document.querySelector("input[placeholder='Enter stock quantity']").value = item.stock;
+                deleteItem(item.id);
+            };
+        };
+    });
 </script>
 </body>
 </html>
