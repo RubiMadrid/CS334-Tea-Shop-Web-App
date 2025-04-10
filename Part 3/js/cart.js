@@ -98,6 +98,8 @@ function removeFromCart(itemId) {
     };
 }
   
-  
+ function addedToCartAlert(){
+  alert("Added to Cart");
+ }
   
   
