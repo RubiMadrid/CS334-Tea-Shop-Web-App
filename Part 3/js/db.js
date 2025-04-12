@@ -1,11 +1,11 @@
 // db.js
 
 const indexedDB =
-  window.indexedDB ||
-  window.mozIndexedDB ||
-  window.webkitIndexedDB ||
-  window.msIndexedDB ||
-  window.shimIndexedDB;
+    window.indexedDB ||
+    window.mozIndexedDB ||
+    window.webkitIndexedDB ||
+    window.msIndexedDB ||
+    window.shimIndexedDB;
 
 let db;
 
@@ -27,7 +27,9 @@ request.onupgradeneeded = function () {
     db.createObjectStore("cartItems", { keyPath: "id" });
   }
 
-  
+  if (!db.objectStoreNames.contains("storeOrders")) {
+    db.createObjectStore("storeOrders", { keyPath: "id" });
+  }
 };
 
 request.onsuccess = function () {

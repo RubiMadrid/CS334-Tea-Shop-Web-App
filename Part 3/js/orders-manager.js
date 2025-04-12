@@ -1,28 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
     let db;
-    const request = indexedDB.open("storeOrders", 1); // ✅ Updated DB name
+    const request = indexedDB.open("TeaShopDB", 2); // ✅ Correct DB name and version
 
-    request.onupgradeneeded = function (event) {
-        db = event.target.result;
-        if (!db.objectStoreNames.contains("orders")) {
-            db.createObjectStore("orders", { keyPath: "id" });
-        }
+    request.onerror = function (event) {
+        console.error("[OrdersManager] Failed to open TeaShopDB", event);
+        alert("Failed to open database.");
     };
 
     request.onsuccess = function (event) {
         db = event.target.result;
+
+        if (!db.objectStoreNames.contains("storeOrders")) {
+            console.error("[OrdersManager] ❌ Object store 'storeOrders' is missing.");
+            alert("Orders cannot be displayed because 'storeOrders' does not exist.");
+            return;
+        }
+
         loadOrders();
     };
 
     function loadOrders() {
-        const transaction = db.transaction("orders", "readonly");
-        const store = transaction.objectStore("orders");
+        const transaction = db.transaction("storeOrders", "readonly");
+        const store = transaction.objectStore("storeOrders");
         const getAll = store.getAll();
 
         getAll.onsuccess = function () {
             const orders = getAll.result;
             const tbody = document.getElementById("orders-tbody");
             tbody.innerHTML = "";
+
+            if (orders.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='10' class='text-center'>No orders found.</td></tr>";
+                return;
+            }
 
             orders.forEach(order => {
                 tbody.innerHTML += `
@@ -44,11 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
             });
         };
+
+        getAll.onerror = function () {
+            console.error("[OrdersManager] Failed to retrieve orders");
+            alert("Could not load orders.");
+        };
     }
 
     window.updateStatus = function (id) {
-        const transaction = db.transaction("orders", "readwrite");
-        const store = transaction.objectStore("orders");
+        const transaction = db.transaction("storeOrders", "readwrite");
+        const store = transaction.objectStore("storeOrders");
         const getReq = store.get(id);
 
         getReq.onsuccess = function () {
@@ -60,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     window.deleteOrder = function (id) {
-        const transaction = db.transaction("orders", "readwrite");
-        const store = transaction.objectStore("orders");
+        const transaction = db.transaction("storeOrders", "readwrite");
+        const store = transaction.objectStore("storeOrders");
         const deleteReq = store.delete(id);
         deleteReq.onsuccess = loadOrders;
     };
