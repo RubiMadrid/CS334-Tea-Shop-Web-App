@@ -9,7 +9,7 @@ const indexedDB =
 
 let db;
 
-const request = indexedDB.open("TeaShopDB", 2);
+const request = indexedDB.open("TeaShopDB", 1);
 
 request.onerror = function (event) {
   console.error("An error occurred with TeaShopDB", event.target.error);
@@ -30,6 +30,11 @@ request.onupgradeneeded = function () {
   if (!db.objectStoreNames.contains("storeOrders")) {
     db.createObjectStore("storeOrders", { keyPath: "id" });
   }
+
+  if (!db.objectStoreNames.contains("admins")) {
+    const objectStore = db.createObjectStore("admins", { keyPath: "id", autoIncrement: true });
+    objectStore.createIndex("email", "email", { unique: true });
+}
 };
 
 request.onsuccess = function () {

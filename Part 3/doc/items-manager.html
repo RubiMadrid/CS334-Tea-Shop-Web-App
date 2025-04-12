@@ -94,7 +94,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         let db;
 
-        const request = indexedDB.open("TeaShopDB", 2);
+        const request = indexedDB.open("TeaShopDB", 1);
         request.onerror = () => alert("Failed to open TeaShopDB");
 
         request.onupgradeneeded = function (event) {

@@ -17,28 +17,27 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     // IndexdDB
+    let db;
     const indexedDB =
         window.indexedDB ||
         window.mozIndexedDB ||
         window.webkitIndexedDB ||
         window.msIndexedDB ||
         window.shimIndexedDB;
-
-    const dbName = "AdminDB";
-    let db;
-
+        
     // Opend IndexDB Connection
-    const request = indexedDB.open(dbName, 1);
+    const request = indexedDB.open("TeaShopDB", 1);
 
     // Error handler
     request.onerror = function (event) {
-        alert("An error occurred with AdminDB");
+        alert("An error occurred with TeaShopDB");
         console.error(event);
     };
 
     // Success handler
     request.onsuccess = (event) => {
         db = event.target.result;
+        addAdmins();
 
         // Handles form submit event
         document.getElementById("login-form").addEventListener("submit", function (event) {
@@ -49,25 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
             // Reset login form
             document.getElementById("login-form").reset()
 
-            // Adds admins if demo mode active
-            if (email.toLowerCase() === "demo@enmu.edu" && pass.toLowerCase() === "demo") {
-                addAdmins();
-            } else {
-                loginAdmin(email, pass);
-            }
+            // Login admin
+            loginAdmin(email, pass);
         });
-    };
-
-    // Upgrade storage objects
-    request.onupgradeneeded = function () {
-        db = request.result;
-    
-        if (!db.objectStoreNames.contains("admins")) {
-            const objectStore = db.createObjectStore("admins", { keyPath: "id", autoIncrement: true });
-    
-            objectStore.createIndex("email", "email", { unique: true });
-            objectStore.createIndex("password", "password", { unique: false });
-        }
     };
 
     // Hanldes admin login

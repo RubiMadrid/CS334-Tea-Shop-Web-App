@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     let db;
-    const request = indexedDB.open("TeaShopDB", 2); // ✅ Correct DB name and version
+    const request = indexedDB.open("TeaShopDB", 1); // ✅ Correct DB name and version
 
     request.onerror = function (event) {
         console.error("[OrdersManager] Failed to open TeaShopDB", event);
