@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.msIndexedDB ||
         window.shimIndexedDB;
 
-    const dbName = "TeaShopDB";
+    const dbName = "AdminDB";
     let db;
 
     // Opend IndexDB Connection
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Error handler
     request.onerror = function (event) {
-        alert("An error occurred with TeaShopDB");
+        alert("An error occurred with AdminDB");
         console.error(event);
     };
 
