@@ -9,10 +9,10 @@ const indexedDB =
 
 let db;
 
-const request = indexedDB.open("TeaShopDB", 1);
+const request = indexedDB.open("TeaShopDB", 2);
 
 request.onerror = function (event) {
-  console.error("An error occurred with TeaShopDB");
+  console.error("An error occurred with TeaShopDB", event.target.error);
   console.error(event);
 };
 
