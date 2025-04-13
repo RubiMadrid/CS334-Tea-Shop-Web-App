@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let cards = document.getElementsByClassName("card");
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", () => {
-                window.location.href = "./item2-details.html?itemID=" + cards[i].id;
+                window.location.href = "./doc/item2-details.html?itemID=" + cards[i].id;
             });
         }
     }
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let cards = document.getElementsByClassName("card");
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", () => {
-                window.location.href = "./item2-details.html?itemID=" + cards[i].id;
+                window.location.href = "./doc/item2-details.html?itemID=" + cards[i].id;
             });
         }
     }

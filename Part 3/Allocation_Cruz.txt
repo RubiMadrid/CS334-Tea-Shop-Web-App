@@ -1,0 +1,8 @@
+- Items list functionality.
+- Popular items list functionality.
+- New items list functionality.
+- Demo mode user support to login.
+- Stored login session data.
+- Rerouted on active login session.
+- Validated login account.
+- Implemented logout with session clearing.
