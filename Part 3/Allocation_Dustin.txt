@@ -1,0 +1,5 @@
+Implementented managerial side updates and checkout function.
+
+Implemented usage of IndexedDB to simulate the checkout process where managers can go and mark the order as shipped or delete to cancel the order.
+
+Implemented Items manager dynamically where items added will be added to a database for the items.
