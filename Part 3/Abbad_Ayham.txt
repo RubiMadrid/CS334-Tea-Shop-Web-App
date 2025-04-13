@@ -1,5 +1,12 @@
-Ayham Abbad
-Created cart.html 
-created check-out.html
-created conformation.html
-fixed some styling issues related to task bar in some html files
+Implemented add, delete, and update quantity features in cart.html, with dynamic adjustments to quantities.
+
+Created a separate page to display item details retrieved from the TeaShopDB store items object, linked from items-list.html.
+
+Revised Execution.pdf to include these recent updates.
+
+
+
+
+
+
+
