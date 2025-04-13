@@ -62,6 +62,10 @@ table.table tbody tr td {
     /* background-color: #C2CAD0; */
 }
 
+.bg-colore {
+    background-color: #244855;
+}
+
 .details-container {
     padding-left: 25px;
 }

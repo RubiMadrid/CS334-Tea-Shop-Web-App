@@ -36,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Success handler
     request.onsuccess = (event) => {
+        // Get TeaShopDB
         db = event.target.result;
+
+        // Add admin accounts to db
         addAdmins();
 
         // Handles form submit event
@@ -112,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 alert("Demo mode activated and admins added successfully!");
             } else {
-                alert("Demo mode activated. Admins already exist.");
                 console.log("Admins already exist in the database.");
             }
         };
