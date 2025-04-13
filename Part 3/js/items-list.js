@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
         window.shimIndexedDB;
         
     // Opend IndexDB Connection
-    const request = indexedDB.open("TeaShopDB", 1);
+    const request = indexedDB.open("TeaShopDB", 2);
 
     // Error handler
     request.onerror = function (event) {
         alert("An error occurred with TeaShopDB");
-        console.error(event);
+        console.error(event.target.error);
     };
 
     // Success handler

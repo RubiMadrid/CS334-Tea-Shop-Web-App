@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.shimIndexedDB;
         
     // Opend IndexDB Connection
-    const request = indexedDB.open("TeaShopDB", 1);
+    const request = indexedDB.open("TeaShopDB", 2);
 
     // Error handler
     request.onerror = function (event) {

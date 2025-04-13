@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let db;
 
-    const request = indexedDB.open("TeaShopDB", 1);
+    const request = indexedDB.open("TeaShopDB", 2);
     request.onerror = () => alert("Failed to open TeaShopDB");
     request.onsuccess = (event) => {
         db = event.target.result;
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         store.delete(id).onsuccess = loadItems;
     };
 
-    // Edit item (pre-fills form and deletes old item)
+    // Edit item 
     window.editItem = function (id) {
         const transaction = db.transaction("storeItems", "readonly");
         const store = transaction.objectStore("storeItems");

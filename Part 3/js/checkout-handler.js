@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const request = indexedDB.open("TeaShopDB", 2);
 
         request.onerror = function (event) {
-            console.error("[Checkout] Failed to open TeaShopDB", event);
+            console.error("[Checkout] Failed to open TeaShopDB", event.target.error);
             alert("Failed to open database.");
         };
 

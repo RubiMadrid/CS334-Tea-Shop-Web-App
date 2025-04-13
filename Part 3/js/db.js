@@ -9,7 +9,7 @@ const indexedDB =
 
 let db;
 
-const request = indexedDB.open("TeaShopDB", 1);
+const request = indexedDB.open("TeaShopDB", 2);
 
 request.onerror = function (event) {
   console.error("An error occurred with TeaShopDB", event.target.error);
@@ -40,6 +40,9 @@ request.onupgradeneeded = function () {
 request.onsuccess = function () {
   db = request.result;
 
+  window.db = db; 
+  document.dispatchEvent(new Event("dbReady"));
+
   const txn = db.transaction("storeItems", "readonly");
   const store = txn.objectStore("storeItems");
   const checkRequest = store.getAll();
@@ -49,9 +52,6 @@ request.onsuccess = function () {
       addInitialStoreItems();
     }
   };
-
-  // This runs only after DB is ready
-  displayCartItems();
 };
 
 function addInitialStoreItems() {
