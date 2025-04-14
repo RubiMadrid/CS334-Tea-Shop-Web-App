@@ -1,3 +1,3 @@
-Edited/ updated item detail pages 
-
-Created alert for items added to cart 
+Edited/ updated item detail pages and standardized them 
+Worked on IndexDB (did not end up using this version)
+Created alerts to item detail pages for items added to cart 
