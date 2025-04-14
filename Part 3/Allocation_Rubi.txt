@@ -1,14 +1,3 @@
-Landing Page (Cruz)
-Login (Admin) (Cruz)
-Items Manager(Dustin)
-Orders Manager(Dustin)
-Items List (Rubi)
-Item Details (Rubi)
-Cart(Ayham)
-Checkout(Ayham)
-Sell Confirmation(Ayham)
-About Us (Cruz)
-Contact Us (Rubi)
-Allocation_Rubi.txt(Rubi)
-Execution.pdf(Dustin)
-GitHubPages (Rubi)
+Edited/ updated item detail pages 
+
+Created alert for items added to cart 
