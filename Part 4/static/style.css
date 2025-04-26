@@ -1,0 +1,71 @@
+/* TAGS CSS */
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+img {
+    width: 100%;
+}
+
+/* ID CSS */
+
+#root {
+    background-color: #fbe9d0;
+    /* background-color: #C2CAD0; */
+    /* height: 100%; */
+}
+
+#header {
+    background-color: #244855;
+    /* background-color: #E7717D; */
+    /* background-color: #7E685A; */
+}
+
+#footer {
+    background-color: #244855;
+    /* background-color: #E7717D; */
+    /* background-color: #7E685A; */
+}
+
+#confirmation {
+    max-width: 650px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* CLASSES CSS */
+
+.sidebar {
+    background-color: #244855;
+    /* background-color: #E7717D; */
+    /* background-color: #7E685A; */
+}
+
+table.table tbody tr td {
+    background-color: #fbe9d0;
+    /* background-color: #C2CAD0; */
+}
+.ui-w-40 {
+    width: 100px ;
+    height: auto;
+}
+
+.fg-colore {
+    background-color: #fbe9d0;
+    /* background-color: #C2CAD0; */
+}
+
+.bg-colore {
+    background-color: #244855;
+}
+
+.details-container {
+    padding-left: 25px;
+}

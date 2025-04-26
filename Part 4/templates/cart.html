@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body id="root">
+  <div class="container">
+    <div class="card">
+      <div class="card-header" id="header">
+        <h2 style="color: white;">Shopping Cart</h2>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="text-center py-3 px-4" style="width: 400px;">Tea</th>
+                <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#" class="shop-tooltip float-none text-light" title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+              </tr>
+            </thead>
+            <tbody id="cart-table-body">
+              <!-- Dynamic cart items will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer" id="footer">
+          <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+            <div class="d-flex">
+              <div>
+                <label for="total" style="color: white;">Total price</label>
+                <div class="text-large" id="total" style="color: white;"><strong>$0.00</strong></div>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" style="color: white;" onclick="window.location.href = '../index.html';">Back to Home</button>
+              <button type="button" class="btn btn-lg btn-primary mt-2" style="color: white;" onclick="window.location.href = 'check-out.html';">Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer" class="container-fluid text-white p-3">
+    <br>
+    <div class="container p-1">
+        <div class="row p-2">
+            <div class="col p-8">
+            </div>
+            <div class="col p-4">
+                <h4>
+                    <strong>
+                        Our Story
+                    </strong>
+                </h4>
+                <ul>
+                  <li><a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="../doc/about-us.html">Our Story</a></li>
+                  <li><a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="../doc/login.html">Login</a></li>
+                  <li><a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="../doc/contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>    
+</div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS files -->
+  <script src="../js/db.js"  defer></script>
+  <script src="../js/cart.js"  defer></script>
+  
+
+  <!-- Call displayCartItems after everything loads -->
+  <script>
+    // Wait until DB is ready before displaying cart items
+    function waitForDBAndDisplayCart() {
+      if (typeof db === "undefined" || !db) {
+        setTimeout(waitForDBAndDisplayCart, 100); // wait and retry
+      } else {
+        displayCartItems();
+      }
+    }
+  
+    window.onload = waitForDBAndDisplayCart;
+  </script>
+  
+</body>
+</html>
