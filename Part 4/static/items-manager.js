@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const store = transaction.objectStore("storeItems");
 
         const id = Date.now(); // Unique key
-        const newItem = { id, name, price, stock, image: "../src/img/default-tea.png" };
+        const newItem = { id, name, price, stock, image: "/static/img/default-tea.png" };
 
         const request = store.put(newItem);
         request.onsuccess = () => {

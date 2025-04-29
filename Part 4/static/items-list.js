@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(cards)
                 for (let i = 0; i < cards.length; i++) {
                     cards[i].addEventListener("click", () => {
-                        window.location.href = "./item2-details.html?itemID=" + cards[i].id;
+                        window.location.href = "/item?itemID=" + cards[i].id;
                     });
                 }
             };

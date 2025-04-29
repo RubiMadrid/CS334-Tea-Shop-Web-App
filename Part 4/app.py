@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -17,6 +17,52 @@ class StoreItems(db.Model):
     price = db.Column(db.Float, nullable=False)
     oz = db.Column(db.Integer, nullable=False)
     image = db.Column(db.String(), nullable=False)       
+
+# ----------------------------------------------------
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/about-us')
+def about_us():
+    return render_template('about-us.html')
+
+@app.route('/check-out')
+def check_out():
+    return render_template('check-out.html')
+
+@app.route('/confirmation')
+def confirmation():
+    return render_template('confirmation.html')
+
+@app.route('/contact-us')
+def contact_us():
+    return render_template('contact-us.html')
+
+@app.route('/items')
+def items():
+    return render_template('items-list.html')
+
+@app.route('/item')
+def item():
+    return render_template('item2-details.html')
+
+@app.route('/admin/items-manager')
+def items_manager():
+    return render_template('items-manager.html')
+
+@app.route('/admin/orders-manager')
+def orders_manager():
+    return render_template('orders-manager.html')
 
 # ----------------------------------------------------
 

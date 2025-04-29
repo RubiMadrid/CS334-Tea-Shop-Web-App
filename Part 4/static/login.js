@@ -1,6 +1,6 @@
 // Checks current logged in session
 if (localStorage.getItem("sessionID")) {
-    window.location.href = "./items-manager.html";
+    window.location.href = ".//admin/items-manager";
 }
 
 // Waits for DOM Content to load
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("Login successful:", name);
                 localStorage.setItem("sessionID", admin.id);
                 localStorage.setItem("sessionName", name);
-                window.location.href = "./items-manager.html";
+                window.location.href = "/admin/items-manager";
             } else {
                 alert("Invalid email or password.");
                 console.log("Login failed.");
