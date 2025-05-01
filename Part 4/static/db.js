@@ -55,25 +55,48 @@ request.onsuccess = function () {
 };
 
 function addInitialStoreItems() {
-  const transaction = db.transaction("storeItems", "readwrite");
-  const store = transaction.objectStore("storeItems");
+  fetch('/api/storeitems')
+    .then(function(response) {
+      return response.json();  
+    })
+    .then(function(items) {
+      const transaction = db.transaction("storeItems", "readwrite");
+      const store = transaction.objectStore("storeItems");
+      
+      for (var i = 0; i < items.length; i++) {
+        store.put(items[i]);  
+      }
 
-  store.put({ id: 1, name: "Green Tea", price: 2.55, oz:8, createdDate: "12/01/2024", image: "/static/img/green-tea-001.png" });
-  store.put({ id: 2, name: "Green Tea", price: 3.99, oz:16, createdDate: "03/01/2024", image: "/static/img/green-tea-001.png" });
-  store.put({ id: 3, name: "Green Tea", price: 5.99, oz:32, createdDate: "03/05/2024", image: "/static/img/green-tea-001.png" });
-  store.put({ id: 4, name: "Black Tea", price: 2.55, oz:8, createdDate: "03/08/2024", image: "/static/img/black-tea-001.png" });
-  store.put({ id: 5, name: "Black Tea", price: 3.99, oz:16, createdDate: "03/10/2024", image: "/static/img/black-tea-001.png" });
-  store.put({ id: 6, name: "Black Tea", price: 5.99, oz:32, createdDate: "03/10/2024", image: "/static/img/black-tea-001.png" });
-  store.put({ id: 7, name: "Matcha Tea", price: 2.55, oz:8, createdDate: "03/12/2024", image: "/static/img/matcha-tea-001.png" });
-  store.put({ id: 8, name: "Matcha Tea", price: 3.99, oz:16, createdDate: "03/15/2024", image: "/static/img/matcha-tea-001.png" });
-  store.put({ id: 9, name: "Matcha Tea", price: 5.99, oz:32, createdDate: "03/16/2024", image: "/static/img/matcha-tea-001.png" });
-  store.put({ id: 10, name: "Chia Tea", price: 2.55, oz:8, createdDate: "03/19/2024", image: "/static/img/img-tea-3.png" });
-  store.put({ id: 11, name: "Chia Tea", price: 3.99, oz:16, createdDate: "03/24/2024", image: "/static/img/img-tea-3.png" });
-  store.put({ id: 12, name: "Chia Tea", price: 5.99, oz:32, createdDate: "03/24/2024", image: "/static/img/img-tea-3.png" });
-  store.put({ id: 13, name: "Herbal Tea", price: 2.55, oz:8, createdDate: "03/29/2024", image: "/static/img/img-tea-2.png" });
-  store.put({ id: 14, name: "Herbal Tea", price: 3.99, oz:16, createdDate: "04/01/2024", image: "/static/img/img-tea-2.png" });
-  store.put({ id: 15, name: "Herbal Tea", price: 5.99, oz:32, createdDate: "04/08/2024", image: "/static/img/img-tea-2.png" });
-  store.put({ id: 16, name: "Jasmine Tea", price: 2.55, oz:8, createdDate: "04/10/2024", image: "/static/img/jasmine-tea-001.png" });
-  store.put({ id: 17, name: "Jasmine Tea", price: 3.99, oz:16, createdDate: "04/11/2024", image: "/static/img/jasmine-tea-001.png" });
-  store.put({ id: 17, name: "Jasmine Tea", price: 5.99, oz:32, createdDate: "04/11/2024", image: "/static/img/jasmine-tea-001.png" });
+      transaction.oncomplete = function() {
+        console.log("All items added to IndexedDB.");
+      };
+
+      transaction.onerror = function() {
+        console.error("Failed to add items to IndexedDB.");
+      };
+    })
+    .catch(function(error) {
+      console.error("Error fetching store items:", error);
+    });
+  
+
+
+  // store.put({ id: 1, name: "Green Tea", price: 2.55, oz:8, createdDate: "12/01/2024", image: "/static/img/green-tea-001.png" });
+  // store.put({ id: 2, name: "Green Tea", price: 3.99, oz:16, createdDate: "03/01/2024", image: "/static/img/green-tea-001.png" });
+  // store.put({ id: 3, name: "Green Tea", price: 5.99, oz:32, createdDate: "03/05/2024", image: "/static/img/green-tea-001.png" });
+  // store.put({ id: 4, name: "Black Tea", price: 2.55, oz:8, createdDate: "03/08/2024", image: "/static/img/black-tea-001.png" });
+  // store.put({ id: 5, name: "Black Tea", price: 3.99, oz:16, createdDate: "03/10/2024", image: "/static/img/black-tea-001.png" });
+  // store.put({ id: 6, name: "Black Tea", price: 5.99, oz:32, createdDate: "03/10/2024", image: "/static/img/black-tea-001.png" });
+  // store.put({ id: 7, name: "Matcha Tea", price: 2.55, oz:8, createdDate: "03/12/2024", image: "/static/img/matcha-tea-001.png" });
+  // store.put({ id: 8, name: "Matcha Tea", price: 3.99, oz:16, createdDate: "03/15/2024", image: "/static/img/matcha-tea-001.png" });
+  // store.put({ id: 9, name: "Matcha Tea", price: 5.99, oz:32, createdDate: "03/16/2024", image: "/static/img/matcha-tea-001.png" });
+  // store.put({ id: 10, name: "Chia Tea", price: 2.55, oz:8, createdDate: "03/19/2024", image: "/static/img/img-tea-3.png" });
+  // store.put({ id: 11, name: "Chia Tea", price: 3.99, oz:16, createdDate: "03/24/2024", image: "/static/img/img-tea-3.png" });
+  // store.put({ id: 12, name: "Chia Tea", price: 5.99, oz:32, createdDate: "03/24/2024", image: "/static/img/img-tea-3.png" });
+  // store.put({ id: 13, name: "Herbal Tea", price: 2.55, oz:8, createdDate: "03/29/2024", image: "/static/img/img-tea-2.png" });
+  // store.put({ id: 14, name: "Herbal Tea", price: 3.99, oz:16, createdDate: "04/01/2024", image: "/static/img/img-tea-2.png" });
+  // store.put({ id: 15, name: "Herbal Tea", price: 5.99, oz:32, createdDate: "04/08/2024", image: "/static/img/img-tea-2.png" });
+  // store.put({ id: 16, name: "Jasmine Tea", price: 2.55, oz:8, createdDate: "04/10/2024", image: "/static/img/jasmine-tea-001.png" });
+  // store.put({ id: 17, name: "Jasmine Tea", price: 3.99, oz:16, createdDate: "04/11/2024", image: "/static/img/jasmine-tea-001.png" });
+  // store.put({ id: 17, name: "Jasmine Tea", price: 5.99, oz:32, createdDate: "04/11/2024", image: "/static/img/jasmine-tea-001.png" });
 }
