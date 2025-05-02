@@ -6,48 +6,38 @@ function getQueryParam(param) {
   }
   
   function displayItem(itemID) {
-    const id = parseInt(itemID, 10);
+    fetch(`/api/storeitems/${itemID}`)
+      .then(r => r.json())
+      .then(item => {
+        if (!item) {
+          console.error("No item found for ID:", itemID);
+          return;
+        }
   
-    const transaction = window.db.transaction("storeItems", "readonly");
-    const store = transaction.objectStore("storeItems");
-    const request = store.get(id);
-  
-    request.onsuccess = function () {
-      const item = request.result;
-      if (item) {
-        //inject data from IndexedDB into the page
-        document.getElementById("mainImage").src = item.image;
+        document.getElementById("mainImage").src         = item.image;
         document.getElementById("itemTitle").textContent = item.name;
         document.getElementById("itemPrice").textContent = `$${item.price}`;
-        document.getElementById("itemSize").textContent = `Size: ${item.oz} ounces`;
+        document.getElementById("itemSize").textContent  = `Size: ${item.oz} ounces`;
         document.getElementById("itemDescription").textContent =
           "This tea is exquisitely blended to deliver a refreshing and aromatic experience.";
-        document.getElementById("itemTagline").textContent = "Caffeine-free and invigorating";
+        document.getElementById("itemTagline").textContent     = "Caffeine-free and invigorating";
         document.getElementById("itemIngredients").textContent =
           "Tea leaves, natural flavors, and water";
   
         const tastingNotes = ["Vanilla", "Chamomile", "Lemon", "Herbal"];
-        let tastingNotesHTML = "";
-        tastingNotes.forEach(note => {
-          tastingNotesHTML += `<li>${note}</li>`;
-        });
-        document.getElementById("itemTastingNotes").innerHTML = tastingNotesHTML;
+        document.getElementById("itemTastingNotes").innerHTML =
+          tastingNotes.map(n => `<li>${n}</li>`).join("");
   
-        const addToCartButton = document.getElementById("addToCartButton");
-        addToCartButton.onclick = function () {
+        document.getElementById("addToCartButton").onclick = () => {
           addToCart(item.id);
           addedToCartAlert();
         };
   
         console.log("Loaded item:", item);
-      } else {
-        console.error("No item found for ID:", id);
-      }
-    };
-  
-    request.onerror = function (event) {
-      console.error("Error retrieving the item:", event.target.error);
-    };
+      })
+      .catch(err => {
+        console.error("Failed to load item:", err);
+      });
   }
   
   function runDisplay() {

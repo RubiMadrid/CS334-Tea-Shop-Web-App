@@ -1,49 +1,15 @@
 // Waits for DOM Content to load
 document.addEventListener('DOMContentLoaded', function () {
 
-    //Items list
-    let items;
+    fetch('/api/storeitems')
+      .then(r => r.json())
+      .then(items => {
 
-    // IndexdDB
-    let db;
-    const indexedDB =
-        window.indexedDB ||
-        window.mozIndexedDB ||
-        window.webkitIndexedDB ||
-        window.msIndexedDB ||
-        window.shimIndexedDB;
-        
-    // Opend IndexDB Connection
-    const request = indexedDB.open("TeaShopDB", 2);
+        loadPopularItems(items);
+        loadNewItems(items);
+      });
 
-    // Error handler
-    request.onerror = function (event) {
-        alert("An error occurred with TeaShopDB");
-        console.error(event);
-    };
-
-    // Success handler
-    request.onsuccess = (event) => {
-        db = event.target.result;
-
-        const transaction = db.transaction("storeItems", "readonly");
-        const store = transaction.objectStore("storeItems");
-        const getAll = store.getAll();
-
-        getAll.onsuccess = function () {
-            items = getAll.result;
-
-            loadPopularItems();
-            loadNewItems();
-        };
-
-        getAll.onerror = function () {
-            console.error("[ItemsList] Failed to retrieve items");
-            alert("Could not load items.");
-        };
-    }
-
-    function loadPopularItems() {
+    function loadPopularItems(items) {
         const tbody = document.getElementById("popular-items-list");
         tbody.innerHTML = "";
 
@@ -86,12 +52,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let cards = document.getElementsByClassName("card");
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", () => {
-                window.location.href = "./doc/item2-details.html?itemID=" + cards[i].id;
+                window.location.href = "/item?itemID=" + cards[i].id;
             });
         }
     }
 
-    function loadNewItems() {
+    function loadNewItems(items) {
         const tbody = document.getElementById("new-items-list");
         tbody.innerHTML = "";
 
@@ -103,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let htmlText = `<div class="row row-cols-1 row-cols-md-4 g-4">`;
 
         // Sort items list by createdDate
-        items.sort((a, b) => new Date(a.createdDate) - new Date(b.createdDate));
+        items.sort((a, b) => a.price - b.price);
 
         for (let i = 0; i < 4; i++) {
             const item = items[i];
@@ -134,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let cards = document.getElementsByClassName("card");
         for (let i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", () => {
-                window.location.href = "./doc/item2-details.html?itemID=" + cards[i].id;
+                window.location.href = "/item?itemID=" + cards[i].id;
             });
         }
     }
