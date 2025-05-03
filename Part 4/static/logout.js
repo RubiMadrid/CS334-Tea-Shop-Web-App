@@ -1,9 +1,15 @@
-// Logout user if active session found
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById("logout-btn").addEventListener("click", function(event) {
-        if (localStorage.getItem("sessionID")) {
-            localStorage.clear()
-            window.location.href = "/"
-        }
-    });
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function () {
+            fetch('/api/admin/logout', { method: 'POST' })
+                .then(() => {
+                    window.location.href = "/";
+                })
+                .catch(err => {
+                    console.error("Logout failed:", err);
+                    alert("Logout failed.");
+                });
+        });
+    }
 });

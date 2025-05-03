@@ -1,92 +1,81 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>The Tea Shop</title>
-        <meta name="description" content="lan=en">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Latest compiled and minified CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Our Story - The Tea Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
 
-        <!-- Collapsible navbar  -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <!-- PWA -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#244855">
+    <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/service-worker.js')
+                    .then(reg => console.log("Service worker registered:", reg.scope))
+                    .catch(err => console.log("Service worker registration failed:", err));
+            });
+        }
+    </script>
+</head>
+<body id="root" style="background-color: #fbe9d0;">
+<!-- HEADER -->
+<div id="header" style="background-color: #244855;" class="container-fluid p-1 text-white">
+    <ul class="nav justify-content-end">
+        <li class="nav-item"><a class="nav-link link-light" href="/cart">Cart</a></li>
+        <li class="nav-item"><a class="nav-link link-light" href="/login">Login</a></li>
+    </ul>
 
-        <!-- Costume CSS stylesheets -->
-        <link href="/static/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <!-- ROOT -->
-        <div id="root">
-            <!-- HEADER -->
-            <div id="header" class="container-fluid text-white">
-                <ul class="nav justify-content-end">
-                    <li class="nav-item"><a class="nav-link link-light" href="/cart">Cart</a></li>
-                    <li class="nav-item"><a class="nav-link link-light" href="/login">Login</a></li>
+    <h1 class="h1 p-4 text-center"><strong>The Tea Shop</strong></h1>
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/"><h5>Home</h5></a></li>
+                <li class="nav-item"><a class="nav-link" href="/items"><h5>Teas</h5></a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact-us"><h5>Contact Us</h5></a></li>
+                <li class="nav-item"><a class="nav-link active" href="/about-us"><h5>Our Story</h5></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- BODY -->
+<div class="container py-5 text-center">
+    <h1 class="mb-4">Our Story</h1>
+    <div class="mx-auto" style="max-width: 750px;">
+        <p class="fs-5">
+            Welcome to <strong>The Tea Shop</strong> — where tradition meets taste.
+            <br><br>
+            Our journey began with a simple mission: to bring ethically-sourced, small-batch teas to your cup. Each blend we offer is handpicked for quality and freshness, inspired by centuries of tea culture and driven by a passion for excellence.
+            <br><br>
+            Whether you're steeped in tradition or exploring new flavors, we're here to elevate your tea experience with warmth, comfort, and quality in every sip.
+        </p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="page-footer" class="container-fluid text-white p-3" style="background-color: #244855;">
+    <div class="container">
+        <div class="row p-2 justify-content-center">
+            <div class="col-md-6 text-center">
+                <h4><strong>Our Story</strong></h4>
+                <ul class="list-unstyled">
+                    <li><a class="link-light" href="/about-us">Our Story</a></li>
+                    <li><a class="link-light" href="/login">Login</a></li>
+                    <li><a class="link-light" href="/contact-us">Contact Us</a></li>
                 </ul>
-
-                <h1 class="h1 text-center"><strong>The Tea Shop</strong></h1>
-
-                <!-- Collapsible Navbar  -->
-                <nav class="navbar navbar-expand-sm navbar-dark">
-                    <div class="container-fluid d-flex flex-row-reverse">
-                      <button class="navbar-toggler ml-5 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                      </button>
-                      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="/"><h5>Home</h5></a></li>
-                            <li class="nav-item"><a class="nav-link" href="/items"><h5>Teas</h5></a></li>
-                            <li class="nav-item"><a class="nav-link" href="/contact-us"><h5>Contact Us</h5></a></li>
-                            <li class="nav-item"><a class="nav-link active" href="/about-us"><h5>Our Story</h5></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                </nav>
-            </div>
-
-            <div id="body" class="container w-75 py-5">
-
-                <h1 class="h1 px-md-5 p-2">Our Story</h1>
-
-                <div class="container w-75 p-md-5">
-                    
-                    <p class="text-justify">
-                        &emsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porta nulla massa, eu pretium nisi pharetra vel. 
-                        Donec congue ex turpis. Nullam consequat mollis ante eu maximus. Curabitur urna mauris, lacinia sit amet nibh sit 
-                        amet, mattis viverra neque. Etiam iaculis scelerisque velit, sit amet sodales sapien semper non. 
-                    </p>
-                </div>
-                
-            </div>
-            
-            <!-- FOOTER -->
-            <div id="footer" class="container-fluid text-white p-3">
-                <br>
-                <div class="container p-1">
-                    <div class="row p-2">
-                        <div class="col p-8">
-                        </div>
-                        <div class="col p-4">
-                            <h4>
-                                <strong>
-                                    Our Story
-                                </strong>
-                            </h4>
-                            <ul>
-                                <li><a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/template//about-us">Our Story</a></li>
-                                <li><a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/login">Login</a></li>
-                                <li><a class="link-light link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover" href="/template//contact-us">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>    
             </div>
         </div>
-        <script src="" async defer></script>
-    </body>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
