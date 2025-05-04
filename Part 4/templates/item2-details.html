@@ -63,7 +63,7 @@
           `;
 
                 document.getElementById("add-to-cart").addEventListener("click", () => {
-                  const request = indexedDB.open("TeaShopDB", 2);
+                  const request = indexedDB.open("TeaShopDB", 3);
                   request.onerror = () => alert("⚠️ Could not open TeaShopDB");
 
                   request.onsuccess = function (event) {

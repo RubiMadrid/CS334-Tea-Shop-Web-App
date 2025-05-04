@@ -11,9 +11,9 @@ app.secret_key = 'cs334'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
-app.config['MAIL_PASSWORD'] = 'your_app_password'
-app.config['MAIL_DEFAULT_SENDER'] = 'your_email@gmail.com'
+app.config['MAIL_USERNAME'] = 'cs334team@gmail.com'
+app.config['MAIL_PASSWORD'] = 'vpdnsvqqfsnzcgtp'
+app.config['MAIL_DEFAULT_SENDER'] = 'cs334team@gmail.com'
 
 mail = Mail(app)
 db = SQLAlchemy(app)
@@ -48,6 +48,7 @@ class StoreOrder(db.Model):
     total = db.Column(db.Float, nullable=False)
     paymentMethod = db.Column(db.String(50))
     status = db.Column(db.String(20), default='Processing')
+    email = db.Column(db.String(100), nullable=False)
 
     def serialize(self):
         return {
@@ -59,7 +60,8 @@ class StoreOrder(db.Model):
             'quantity': self.quantity,
             'total': self.total,
             'paymentMethod': self.paymentMethod,
-            'status': self.status
+            'status': self.status,
+            'email' : self.email
         }
 
 @app.route('/')
@@ -178,6 +180,13 @@ def check_login():
 @app.route('/api/orders', methods=['POST'])
 def create_order():
     data = request.get_json()
+    print("data recieved" + str(data))
+    email = data.get('email')
+    print("email recived:" + str(email))
+
+    if not email:
+        return jsonify({'error': 'Email is required'}), 400                
+
     order = StoreOrder(
         customerName=data.get('customerName'),
         address=data.get('address'),
@@ -186,12 +195,16 @@ def create_order():
         quantity=data.get('quantity'),
         total=data.get('total'),
         paymentMethod=data.get('paymentMethod'),
-        status=data.get('status', 'Processing')
+        status=data.get('status', 'Processing'),
+        email=email
     )
     db.session.add(order)
     db.session.commit()
     try:
-        msg = Message("Tea Shop Order Receipt", recipients=[data.get('email', app.config['MAIL_USERNAME'])])
+        msg = Message(
+            "Tea Shop Order Receipt",
+            recipients=[email]
+        )
         msg.body = (
             f"Hello {order.customerName},\n\n"
             f"Thank you for your order!\n\n"
@@ -199,13 +212,46 @@ def create_order():
             f"Quantity: {order.quantity}\n"
             f"Total: ${order.total:.2f}\n"
             f"Payment Method: {order.paymentMethod}\n\n"
-            f"Your order is being processed.\n\n"
-            f"- The Tea Shop Team"
+            "Your order is being processed.\n\n"
+            "- The Tea Shop Team"
         )
         mail.send(msg)
     except Exception as e:
-        print("❌ Failed to send email:", e)
-    return jsonify({'message': 'Order saved successfully', 'order': order.serialize()}), 201
+        app.logger.warning("Failed to send email: %s", e)
+
+    return jsonify({'message': 'Order saved', 'order': order.serialize()}), 201
+
+@app.route('/api/orders', methods=['GET'])
+def send_orders():
+    items = StoreOrder.query.all()
+    return jsonify([item.serialize() for item in items])
+
+@app.route('/api/orders/<int:order_id>', methods=['DELETE'])
+def delete_order(order_id):
+    order = StoreOrder.query.get(order_id)
+    if not order:
+        return jsonify({'error': 'Order not found'}), 404
+    db.session.delete(order)
+    db.session.commit()
+    return jsonify({'message': f'Order {order_id} deleted'}), 200
+
+@app.route('/api/orders/<int:order_id>', methods=['PUT'])
+def update_order_status(order_id):
+    data = request.get_json()
+    order = StoreOrder.query.get(order_id)
+
+    if not order:
+        return jsonify({'error': 'Order not found'}), 404
+
+    new_status = data.get('status')
+    if not new_status:
+        return jsonify({'error': 'Missing status'}), 400
+
+    order.status = new_status
+    db.session.commit()
+
+    return jsonify({'message': f'Status updated to {new_status}', 'order': order.serialize()}), 200
+
 
 @app.route("/test")
 def test():
