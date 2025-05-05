@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
+from flask_cors import CORS
 
 app = Flask(__name__)
 
@@ -14,6 +15,8 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'cs334team@gmail.com'
 app.config['MAIL_PASSWORD'] = 'vpdnsvqqfsnzcgtp'
 app.config['MAIL_DEFAULT_SENDER'] = 'cs334team@gmail.com'
+
+CORS(app)
 
 mail = Mail(app)
 db = SQLAlchemy(app)
