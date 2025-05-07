@@ -21,3 +21,7 @@ Added a column to the orders table to store customer email addresses
 
 Completed the backend deployment on PythonAnywhere (initially started by Rubi)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
+Rubi Guttierrez-Madrid
+Met with professor 
+
+Started deployment of PythonAnywhere 
