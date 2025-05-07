@@ -30,3 +30,10 @@ Started deployment of PythonAnywhere
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 Dustin Bates
 Managed debugging and backend processes. This would include missed flask routines such as email protocols as requested.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Cruz Urbina
+- index.html
+- items.html
+- contact-us.html
+- index.js
+- items.js
